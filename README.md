@@ -44,7 +44,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   
   * Este projeto é individual
   * São `X` dias de projeto
-  * Data para entrega final do projeto: `15/07/2022 09:10`
+  * Data para entrega final do projeto: `15/07/2022 14:00`
 
 </details>
 
