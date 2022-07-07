@@ -1,8 +1,8 @@
-import Iproducts from '../interfaces/productsInterface';
+import Iproduct from '../interfaces/productsInterface';
 import productsModel from '../models/productsModel';
 
-const getAll = async (): Promise<Iproducts[]> => {
-  const products: Iproducts[] = await productsModel.getAll();
+const getAll = async (): Promise<Iproduct[]> => {
+  const products: Iproduct[] = await productsModel.getAll();
   return products;
 };
 
