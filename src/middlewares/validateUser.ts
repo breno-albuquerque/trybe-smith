@@ -1,12 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 
 const validateUserName = (req: Request, res: Response, next: NextFunction):Response | void => {
-  const { name } = req.body;
+  const { username } = req.body;
 
-  if (!name) return res.status(400).json({ message: '"name" is required' });
-  if (typeof name !== 'string') return res.status(422).json({ message: '"name" must be a string' });
-  if (name.length < 3) {
-    return res.status(422).json({ message: '"name" length must be at least 3 characters long' });
+  if (!username) {
+    return res.status(400).json({ message: '"username" is required' });
+  } 
+  if (typeof username !== 'string') {
+    return res.status(422)
+      .json({ message: '"username" must be a string' });
+  }
+  if (username.length < 3) {
+    return res.status(422)
+      .json({ message: '"username" length must be at least 3 characters long' });
   }
 
   next();
