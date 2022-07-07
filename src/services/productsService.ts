@@ -13,4 +13,5 @@ const create = async (product: Iproduct): Promise<Iproduct> => {
 
 export default {
   getAll,
+  create,
 };
