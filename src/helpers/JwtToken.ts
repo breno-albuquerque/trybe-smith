@@ -3,7 +3,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 const SECRET = process.env.JWT_SECRET || 'secret';
 
 const jwtConfig: object = {
-  algorithm: 'H256',
+  algorithm: 'HS256',
 };
 
 const generateToken = (payload: object): string => {

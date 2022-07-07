@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 router.post(
-  '/users',
+  '/',
   validateUserName,
   validateUserClass,
   validateUserLevel,

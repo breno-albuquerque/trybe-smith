@@ -5,7 +5,7 @@ import Iuser from '../interfaces/userInterface';
 const create = async (user: Iuser): Promise<number | null> => {
   const { username, classe, level, password } = user;
   const query = `
-  INSERT INTO Trybesmith.Users (username, classe, level, passwod) VALUE (?, ?, ?, ?)
+  INSERT INTO Trybesmith.Users (username, classe, level, password) VALUE (?, ?, ?, ?)
   `;
   const [result] = await connection
     .execute<ResultSetHeader>(query, [username, classe, level, password]);

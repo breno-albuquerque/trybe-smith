@@ -35,7 +35,7 @@ const validateUserClass = (req: Request, res: Response, next: NextFunction):Resp
 const validateUserLevel = (req: Request, res: Response, next: NextFunction):Response | void => {
   const { level } = req.body;
 
-  if (!level) return res.status(400).json({ message: '"level" is required' });
+  if (level === undefined) return res.status(400).json({ message: '"level" is required' });
   if (typeof level !== 'number') {
     return res.status(422).json({ message: '"level" must be a number' });
   } 
