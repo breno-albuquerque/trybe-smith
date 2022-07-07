@@ -10,7 +10,7 @@ const getAll = async (): Promise<Iproduct[]> => {
 
 const create = async (product: Iproduct): Promise<number> => {
   const { name, amount } = product;
-  const query = 'INSERT INTO Trybesmith.Products (name, amount, orderId) VALUE (?, ?)';
+  const query = 'INSERT INTO Trybesmith.Products (name, amount) VALUE (?, ?)';
   const [result] = await connection.execute<ResultSetHeader>(query, [name, amount]);
   return result.insertId;
 };
