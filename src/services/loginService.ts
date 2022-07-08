@@ -8,10 +8,8 @@ const login = async (user: Omit<Iuser, 'classe' | 'level'>): Promise<string | nu
   if (loggedUser.length === 0) {
     return null;
   }
-
-  const { username, classe, level } = loggedUser[0];
-
-  const token: string = JwtToken.generateToken({ username, classe, level });
+  
+  const token: string = JwtToken.generateToken(loggedUser[0]);
   return token;
 };
 
