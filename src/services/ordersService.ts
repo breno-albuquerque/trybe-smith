@@ -2,8 +2,9 @@ import Iorder from '../interfaces/orderInterface';
 import Iproduct from '../interfaces/productsInterface';
 import ordersModel from '../models/ordersModel';
 import productsService from './productsService';
+import IfullOrder from '../interfaces/fullOrderInterface';
 
-const getAll = async () => {
+const getAll = async (): Promise<IfullOrder[]> => {
   const products: Iproduct[] = await productsService.getAll();
   const orders: Iorder[] = await ordersModel.getAll();
 
@@ -14,7 +15,7 @@ const getAll = async () => {
       .map((filteredProd) => filteredProd.id),
   }));
 
-  return fullOrder;
+  return fullOrder as IfullOrder[];
 };
 
 export default {
