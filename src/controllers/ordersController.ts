@@ -8,9 +8,16 @@ const getAll = async (_req: Request, res: Response): Promise<Response> => {
 };
 
 const create = async (req: Request, res: Response): Promise<Response> => {
-  const decrypted = JwtToken.verifyToken(token)
-  const newOrder = await ordersService.create(req.body);
-  return res.status(200).json(newOrder);
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).json({ message: 'Token not found' });
+
+  try {
+    const decrypted = JwtToken.verifyToken(token);
+    const newOrder = await ordersService.create(decrypted.id, req.body.productsIds);
+    return res.status(201).json(newOrder);
+  } catch (error) {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
 };
 
 export default {

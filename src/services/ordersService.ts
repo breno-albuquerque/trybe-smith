@@ -18,7 +18,7 @@ const getAll = async (): Promise<IfullOrder[]> => {
   return fullOrder as IfullOrder[];
 };
 
-const create = async ()
+/* const create = async () */
 
 export default {
   getAll,
