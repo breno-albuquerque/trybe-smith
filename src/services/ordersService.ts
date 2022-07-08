@@ -3,6 +3,7 @@ import Iproduct from '../interfaces/productsInterface';
 import ordersModel from '../models/ordersModel';
 import productsService from './productsService';
 import IfullOrder from '../interfaces/fullOrderInterface';
+import productsModel from '../models/productsModel';
 
 const getAll = async (): Promise<IfullOrder[]> => {
   const products: Iproduct[] = await productsService.getAll();
@@ -18,8 +19,19 @@ const getAll = async (): Promise<IfullOrder[]> => {
   return fullOrder as IfullOrder[];
 };
 
-const create = async (id: number, order: number[]) => {
+const create = async (userId: number, productsIds: number[]): Promise<object> => {
+  const orderId = await ordersModel.create(userId);
+  
+  const productsPromises: Promise<void>[] = [];
+  productsIds.forEach((productId) => {
+    productsPromises.push(productsModel.update(orderId, productId));
+  });
+  await Promise.all(productsPromises);
 
+  return {
+    userId,
+    productsIds,
+  };
 };
 
 export default {

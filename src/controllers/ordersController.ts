@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { JwtPayload } from 'jsonwebtoken';
 import JwtToken from '../helpers/JwtToken';
 import ordersService from '../services/ordersService';
 
@@ -11,13 +12,13 @@ const create = async (req: Request, res: Response): Promise<Response> => {
   const token = req.headers.authorization;
   if (!token) return res.status(401).json({ message: 'Token not found' });
 
-  try {
-    const decrypted = JwtToken.verifyToken(token);
-    const newOrder = await ordersService.create(decrypted.id, req.body.productsIds);
-    return res.status(201).json(newOrder);
-  } catch (error) {
+  const decrypted: JwtPayload | string = JwtToken.verifyToken(token);
+  if (typeof decrypted === 'string') {
     return res.status(401).json({ message: 'Invalid token' });
   }
+  
+  await ordersService.create(decrypted.id, req.body.productsIds);
+  return res.status(201).json(decrypted);
 };
 
 export default {

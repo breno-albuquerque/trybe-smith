@@ -4,6 +4,6 @@ import ordersController from '../controllers/ordersController';
 const router = Router();
 
 router.get('/', ordersController.getAll);
-router.post('/' )
+router.post('/', ordersController.create);
 
 export default router;
