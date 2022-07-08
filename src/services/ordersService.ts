@@ -18,8 +18,11 @@ const getAll = async (): Promise<IfullOrder[]> => {
   return fullOrder as IfullOrder[];
 };
 
-/* const create = async () */
+const create = async (id: number, order: number[]) => {
+
+};
 
 export default {
   getAll,
+  create,
 };
