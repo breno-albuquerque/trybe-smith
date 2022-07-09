@@ -4,13 +4,12 @@ import IUser from '../interfaces/userInterface';
 
 const create = async (user: IUser): Promise<number> => {
   const { username, classe, level, password } = user;
-  const query = `
-  INSERT INTO Trybesmith.Users (username, classe, level, password) VALUE (?, ?, ?, ?)
-  `;
+  const query = 'INSERT INTO Trybesmith.Users (username, classe, level, password) VALUE (?, ?, ?, ?)';
+
   const [result] = await connection
     .execute<ResultSetHeader>(query, [username, classe, level, password]);
-  const { insertId } = result;
-  return insertId;
+
+  return result.insertId;
 };
 
 export default {

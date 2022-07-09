@@ -2,10 +2,9 @@ import IUser from '../interfaces/userInterface';
 import usersModel from '../models/usersModel';
 import JwtToken from '../helpers/JwtToken';
 
-const create = async (user: IUser) => {
+const create = async (user: IUser): Promise<string> => {
   const insertId = await usersModel.create(user);
-  const { username, classe, level } = user;
-  const token: string = JwtToken.generateToken({ id: insertId, username, classe, level });
+  const token = JwtToken.generateToken({ id: insertId, ...user });
   return token;
 };
 
