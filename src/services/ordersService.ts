@@ -1,13 +1,13 @@
-import Iorder from '../interfaces/orderInterface';
-import Iproduct from '../interfaces/productsInterface';
+import IOrder from '../interfaces/orderInterface';
+import IProduct from '../interfaces/productsInterface';
 import ordersModel from '../models/ordersModel';
 import productsService from './productsService';
-import IfullOrder from '../interfaces/fullOrderInterface';
+import IFullOrder from '../interfaces/fullOrderInterface';
 import productsModel from '../models/productsModel';
 
-const getAll = async (): Promise<IfullOrder[]> => {
-  const products: Iproduct[] = await productsService.getAll();
-  const orders: Iorder[] = await ordersModel.getAll();
+const getAll = async (): Promise<IFullOrder[]> => {
+  const products: IProduct[] = await productsService.getAll();
+  const orders: IOrder[] = await ordersModel.getAll();
 
   const fullOrder = orders.map((item) => ({
     id: item.id,
@@ -16,7 +16,7 @@ const getAll = async (): Promise<IfullOrder[]> => {
       .map((filteredProd) => filteredProd.id),
   }));
 
-  return fullOrder as IfullOrder[];
+  return fullOrder as IFullOrder[];
 };
 
 const create = async (userId: number, productsIds: number[]): Promise<object> => {

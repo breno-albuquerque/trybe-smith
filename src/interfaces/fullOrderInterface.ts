@@ -1,7 +1,7 @@
-interface IfullOrder {
+interface IFullOrder {
   id: number,
   userId: number,
   productsIds: number[]
 }
 
-export default IfullOrder;
+export default IFullOrder;

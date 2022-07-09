@@ -1,6 +1,6 @@
-interface Iorder {
+interface IOrder {
   id?: number,
   userId: number
 }
 
-export default Iorder;
+export default IOrder;

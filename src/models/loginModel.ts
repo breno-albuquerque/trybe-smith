@@ -1,13 +1,13 @@
 import connection from './connection';
-import Iuser from '../interfaces/userInterface';
+import IUser from '../interfaces/userInterface';
 
-const getOne = async (user: Omit<Iuser, 'classe' | 'level'>) => {
+const getOne = async (user: Omit<IUser, 'classe' | 'level'>) => {
   const { username, password } = user;
   const query = `
   SELECT id, username, classe, level FROM Trybesmith.Users WHERE username = ? AND password = ?
   `;
   const [result] = await connection.execute(query, [username, password]);
-  return result as Omit<Iuser, 'password'>[];
+  return result as Omit<IUser, 'password'>[];
 };
 
 export default {

@@ -1,11 +1,11 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
-import Iorder from '../interfaces/orderInterface';
+import IOrder from '../interfaces/orderInterface';
 
-const getAll = async (): Promise<Iorder[]> => {
+const getAll = async (): Promise<IOrder[]> => {
   const query = 'SELECT * FROM Trybesmith.Orders';
   const [result] = await connection.execute<RowDataPacket[]>(query);
-  return result as Iorder[];
+  return result as IOrder[];
 };
 
 const create = async (userId: number) => {
