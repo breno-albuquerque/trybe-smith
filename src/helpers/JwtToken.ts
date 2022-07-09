@@ -1,5 +1,6 @@
 import { JwtPayload, sign, SignOptions, verify } from 'jsonwebtoken';
 import IUser from '../interfaces/userInterface';
+import HttpError from './httpError';
 
 const SECRET = process.env.JWT_SECRET || 'secret';
 
@@ -12,8 +13,14 @@ const generateToken = (payload: Omit<IUser, 'password'>): string => {
   return token;
 };
 
-const verifyToken = (token: string): string | JwtPayload => (
-  verify(token, SECRET, jwtConfig));
+const verifyToken = (token: string): string | JwtPayload => {
+  try {
+    const decrypted = verify(token, SECRET, jwtConfig);
+    return decrypted;
+  } catch (err) {
+    throw new HttpError(401, 'Invalid Token');
+  }
+};
 
 export default {
   generateToken,

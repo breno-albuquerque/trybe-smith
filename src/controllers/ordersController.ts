@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import JwtToken from '../helpers/JwtToken';
+import HttpError from '../helpers/httpError';
+import IRequest from '../interfaces/requestInterface';
 import ordersService from '../services/ordersService';
 
 const getAll = async (_req: Request, res: Response): Promise<Response> => {
@@ -7,15 +8,11 @@ const getAll = async (_req: Request, res: Response): Promise<Response> => {
   return res.status(200).json(fullOrder);
 };
 
-const create = async (req: Request, res: Response): Promise<Response | undefined> => {
-  const token = req.headers.authorization;
-  if (token) {
-    const decrypted = JwtToken.verifyToken(token);
-    if (typeof decrypted !== 'string') {
-      const newOrder = await ordersService.create(decrypted.id, req.body.productsIds);
-      return res.status(201).json(newOrder);
-    }
-  }
+const create = async (req: IRequest, res: Response): Promise<Response | undefined> => {
+  const id = req.userId;
+  if (!id) throw new HttpError(401, 'Invalid Token'); 
+  const newOrder = await ordersService.create(id, req.body.productsIds);
+  return res.status(201).json(newOrder);
 };
 
 export default {

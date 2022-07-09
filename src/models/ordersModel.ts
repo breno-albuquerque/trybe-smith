@@ -8,7 +8,7 @@ const getAll = async (): Promise<IOrder[]> => {
   return result as IOrder[];
 };
 
-const create = async (userId: number) => {
+const create = async (userId: number): Promise<number> => {
   const query = 'INSERT INTO Trybesmith.Orders (userId) VALUES (?)';
   const [result] = await connection.execute<ResultSetHeader>(query, [userId]);
   return result.insertId;
