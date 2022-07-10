@@ -6,7 +6,7 @@ import {
   validateUserClass,
   validateUserLevel,
   validateUserPassword,
-} from '../middlewares/validateUser';
+} from '../middlewares/user.middleware';
 
 const router = Router();
 
