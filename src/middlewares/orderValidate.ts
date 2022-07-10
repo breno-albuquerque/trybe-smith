@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
+import HttpStatus from '../helpers/httpStatus';
 
 const validateOrder = (req: Request, res: Response, next: NextFunction): Response | void => {
   const { productsIds } = req.body;
   if (productsIds === undefined) {
-    return res.status(400).json({ message: '"productsIds" is required' });
+    return res.status(HttpStatus.BAD_REQUEST).json({ message: '"productsIds" is required' });
   } 
   if (!Array.isArray(productsIds)) {
-    return res.status(422).json({ message: '"productsIds" must be an array' });
+    return res.status(HttpStatus.UNPROCESSABLE).json({ message: '"productsIds" must be an array' });
   }
   if (productsIds.length === 0) {
-    return res.status(422).json({ message: '"productsIds" must include only numbers' });
+    return res.status(HttpStatus.UNPROCESSABLE).json({ message: '"productsIds" must include only numbers' });
   }
   next();
 };
