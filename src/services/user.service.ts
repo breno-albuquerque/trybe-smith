@@ -1,5 +1,5 @@
-import IUser from '../interfaces/userInterface';
-import usersModel from '../models/usersModel';
+import IUser from '../interfaces/User.interface';
+import usersModel from '../models/user.model';
 import JwtToken from '../helpers/JwtToken';
 
 const create = async (user: IUser): Promise<string> => {

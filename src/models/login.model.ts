@@ -1,5 +1,5 @@
 import connection from './connection';
-import IUser from '../interfaces/userInterface';
+import IUser from '../interfaces/User.interface';
 
 const getOne = async (user: Omit<IUser, 'classe' | 'level'>) => {
   const { username, password } = user;

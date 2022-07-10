@@ -1,7 +1,7 @@
 import HttpError from '../helpers/httpError';
 import JwtToken from '../helpers/JwtToken';
-import IUser from '../interfaces/userInterface';
-import loginModel from '../models/loginModel';
+import IUser from '../interfaces/User.interface';
+import loginModel from '../models/login.model';
 
 const login = async (user: Omit<IUser, 'classe' | 'level'>): Promise<string> => {
   const loggedUser = await loginModel.getOne(user);

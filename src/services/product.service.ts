@@ -1,5 +1,5 @@
-import IProduct from '../interfaces/productsInterface';
-import productsModel from '../models/productsModel';
+import IProduct from '../interfaces/Product.interface';
+import productsModel from '../models/product.model';
 
 const getAll = async (): Promise<IProduct[]> => {
   const products = await productsModel.getAll();

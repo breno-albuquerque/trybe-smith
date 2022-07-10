@@ -1,6 +1,6 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
-import IOrder from '../interfaces/orderInterface';
+import IOrder from '../interfaces/Order.interface';
 
 const getAll = async (): Promise<IOrder[]> => {
   const query = 'SELECT * FROM Trybesmith.Orders';

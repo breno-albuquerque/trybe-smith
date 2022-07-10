@@ -1,7 +1,7 @@
-import ordersModel from '../models/ordersModel';
-import productsService from './productsService';
-import IFullOrder from '../interfaces/fullOrderInterface';
-import productsModel from '../models/productsModel';
+import ordersModel from '../models/order.model';
+import productsService from './product.service';
+import IFullOrder from '../interfaces/FullOrder.interface';
+import productsModel from '../models/product.model';
 
 const getAll = async (): Promise<IFullOrder[]> => {
   const products = await productsService.getAll();

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import HttpError from '../helpers/httpError';
-import IRequest from '../interfaces/requestInterface';
-import ordersService from '../services/ordersService';
+import IRequest from '../interfaces/Request.interface';
+import ordersService from '../services/order.service';
 
 const getAll = async (_req: Request, res: Response): Promise<Response> => {
   const fullOrder = await ordersService.getAll();

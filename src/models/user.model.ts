@@ -1,6 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
-import IUser from '../interfaces/userInterface';
+import IUser from '../interfaces/User.interface';
 
 const create = async (user: IUser): Promise<number> => {
   const { username, classe, level, password } = user;

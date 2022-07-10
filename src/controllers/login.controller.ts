@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import loginService from '../services/loginService';
+import loginService from '../services/login.service';
 
 // eslint-disable-next-line max-len
 const login = async (req: Request, res: Response, next: NextFunction): Promise<Response | undefined> => {

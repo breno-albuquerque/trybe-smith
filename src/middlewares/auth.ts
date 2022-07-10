@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import HttpError from '../helpers/httpError';
 import JwtToken from '../helpers/JwtToken';
-import IRequest from '../interfaces/requestInterface';
+import IRequest from '../interfaces/Request.interface';
 
 const auth = (req: IRequest, res: Response, next: NextFunction):Response | void => {
   const token = req.headers.authorization;
